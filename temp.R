@@ -15,6 +15,7 @@ dados[index,c("IDADE")] <- 17 + 2012 - dados[index,c("ANO_CONCLUIU")]
 # Plot!
 boxplot(na.omit(as.numeric(as.character(dados$ANO_CONCLUIU))), main="", xlab="", ylab="Nota Matem?tica")
 
+#
 LabelsToIndex <- function(x,y,i) {
   if (is.na(x[i]))    return (y)
   else  {
@@ -22,6 +23,7 @@ LabelsToIndex <- function(x,y,i) {
     return (LabelsToIndex(x,y,i+1))
   }
 }
+# example: LabesToIndex(unnecessar,c(1),1)
 
 unnecessary = c("TP_COR_RACA","TP_ESCOLA","TP_ESTADO_CIVIL")
 which(colnames(dados) == unnecessary)
