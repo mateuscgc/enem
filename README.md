@@ -21,7 +21,7 @@ Os parâmetros
 ### remove_outliers()
 A chamada: dados <- remove_outliers(dados,target,log)
 
-Os parâmetros
+####Os parâmetros
 	dados: os dados a serem tratados em sua forma atual
 	target: o atributo(coluna) a ser tratado
 	log: booleano que define se a função irá ou não gerar debug
@@ -29,7 +29,7 @@ Os parâmetros
 ### conditions_satisfied()
 A chamada: dados <- conditions_satisfied(dados, conditioned, conditions, log=FALSE)
 
-Os parâmetros
+####Os parâmetros
 	dados: os dados a serem tratados em sua forma atual
 	conditioned: o atributo(coluna) que dependedente de outros
 	conditions: booleano que define se a função irá ou não gerar debug
