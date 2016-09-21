@@ -25,12 +25,5 @@ LabelsToIndex <- function(x,y,i) {
 }
 # example: LabesToIndex(unnecessar,c(1),1)
 
-unnecessary = c("TP_COR_RACA","TP_ESCOLA","TP_ESTADO_CIVIL")
-which(colnames(dados) == unnecessary)
-#unnecessary = c("TP_COR_RACA")
-#erase colluns
-#dados <- dados[,-1]
-#dados[,unnecessary] <- NULL
-
 #temporary
 #write.table(dados,"/home/ramon/temp/test.csv",append = FALSE, sep = ",")
