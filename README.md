@@ -10,16 +10,11 @@ Nele todos os outros scripts são carregados para uso das funções neles declar
 	numeric_columns
 	eraseColumns
 	age
-### Remove_outliers
-A chamada: dados <- remove_outliers(dados,target,log)
-
-Os parâmetros
-	dados: os dados a serem tratados em sua forma atual
-	target: o atributo(coluna) a ser tratado
-	log: booleano que define se a função irá ou não gerar debug
 
 ### remove_outliers()
-A chamada: dados <- remove_outliers(dados,target,log)
+Outliers são detectados usando ferramentas do próprio R e então removidos.
+####A chamada:
+	dados <- remove_outliers(dados,target,log)
 
 ####Os parâmetros
 	dados: os dados a serem tratados em sua forma atual
@@ -27,10 +22,13 @@ A chamada: dados <- remove_outliers(dados,target,log)
 	log: booleano que define se a função irá ou não gerar debug
 
 ### conditions_satisfied()
-A chamada: dados <- conditions_satisfied(dados, conditioned, conditions, log=FALSE)
+Os valores de alguns atributos devem ser conditionados por outros
+e.g se um indivíduo pede ajuda especial mas não declara uma deficiência, isso é considerado um erro que deve ser corrigido.
+####A chamada: 
+	dados <- conditions_satisfied(dados, conditioned, conditions, log=FALSE)
 
 ####Os parâmetros
 	dados: os dados a serem tratados em sua forma atual
 	conditioned: o atributo(coluna) que dependedente de outros
-	conditions: booleano que define se a função irá ou não gerar debug
-
+	conditions: Atributos os quais "conditioned" é dependente
+	log: booleano que define se a função irá ou não gerar debug
