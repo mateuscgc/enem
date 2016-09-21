@@ -1,30 +1,40 @@
-dados <- read.table("./data/ENEM_LEVE.csv", sep=",", header=TRUE)
+# This script verifies if at list one condition satisfied
 
-conditioned <- "IN_BRAILLE"
-conditions <- c("IN_CEGUEIRA", "IN_BAIXA_VISAO")
+check_conditions <- function(dados, conditioned, conditions, log=FALSE) {
 
-# Get the records that do not fit the conditions
-dados[ as.numeric(as.character(dados[, conditioned])) == 1
-                  & rowSums(dados[, conditions], na.rm = TRUE) == 0
-                  , c(conditions, conditioned)]
+  # Get the records that do not fit the conditions
+  # if(log) {
+  #   dados[ as.numeric(as.character(dados[, conditioned])) == 1
+  #                   & rowSums(dados[, conditions], na.rm = TRUE) == 0
+  #                   , c(conditions, conditioned)]
+  # }
 
-replacement <- 0
+  replacement <- 0
 
-# Really necessary part
-# Replace the records that do not fit the conditions
-dados[ as.numeric(as.character(dados[, conditioned])) == 1
-       & rowSums(dados[, conditions], na.rm = TRUE) == 0
-       , conditioned] <- replacement
+  # Really necessary part
+  # Replace the records that do not fit the conditions
+  if(length(conditions) == 1){
 
+    dados[ as.numeric(as.character(dados[, conditioned])) == 1
+           & dados[,conditions] == 0
+           , conditioned] <- replacement
 
-# Try again to get the records that do not fit the conditions
-dados[ as.numeric(as.character(dados[, conditioned])) == 1
-       & rowSums(dados[, conditions], na.rm = TRUE) == 0
-       , c(conditions, conditioned)]
+  }else{
 
+    dados[ as.numeric(as.character(dados[, conditioned])) == 1
+           & rowSums(dados[, conditions], na.rm = TRUE) == 0
+           , conditioned] <- replacement
+  }
 
-# write.table(dados, "./processed/braille.csv", append = FALSE, sep = ",")
+  # Try again to get the records that do not fit the conditions
+  # if(log) {
+  #   dados[ as.numeric(as.character(dados[, conditioned])) == 1
+  #          & rowSums(dados[, conditions], na.rm = TRUE) == 0
+  #          , c(conditions, conditioned)]
+  # }
 
+  return(dados)
+}
 
 #### Summary of conditions ####
 # "IN_LEDOR" ==> c("IN_BAIXA_VISAO", "IN_CEGUEIRA", "IN_DEFICIENCIA_MENTAL", "IN_SURDO_CEGUEIRA", "IN_AUTISMO", "IN_DEFICIT_ATENCAO", "IN_DISLEXIA")
