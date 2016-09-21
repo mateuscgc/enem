@@ -1,36 +1,40 @@
 # This script verifies if at list one condition satisfied
 
-conditions_satisfied <- function(dados, conditioned, conditions, log=FALSE) {
+check_conditions <- function(dados, conditioned, conditions, log=FALSE) {
 
   # Get the records that do not fit the conditions
-  if(log) {
-    dados[ as.numeric(as.character(dados[, conditioned])) == 1
-                    & rowSums(dados[, conditions], na.rm = TRUE) == 0
-                    , c(conditions, conditioned)]
-  }
+  # if(log) {
+  #   dados[ as.numeric(as.character(dados[, conditioned])) == 1
+  #                   & rowSums(dados[, conditions], na.rm = TRUE) == 0
+  #                   , c(conditions, conditioned)]
+  # }
 
   replacement <- 0
 
   # Really necessary part
   # Replace the records that do not fit the conditions
-  dados[ as.numeric(as.character(dados[, conditioned])) == 1
-         & rowSums(dados[, conditions], na.rm = TRUE) == 0
-         , conditioned] <- replacement
+  if(length(conditions) == 1){
 
+    dados[ as.numeric(as.character(dados[, conditioned])) == 1
+           & dados[,conditions] == 0
+           , conditioned] <- replacement
 
-  # Try again to get the records that do not fit the conditions
-  if(log) {
+  }else{
+
     dados[ as.numeric(as.character(dados[, conditioned])) == 1
            & rowSums(dados[, conditions], na.rm = TRUE) == 0
-           , c(conditions, conditioned)]
+           , conditioned] <- replacement
   }
+
+  # Try again to get the records that do not fit the conditions
+  # if(log) {
+  #   dados[ as.numeric(as.character(dados[, conditioned])) == 1
+  #          & rowSums(dados[, conditions], na.rm = TRUE) == 0
+  #          , c(conditions, conditioned)]
+  # }
 
   return(dados)
 }
-
-# write.table(dados, "./processed/braille.csv", append = FALSE, sep = ",")
-
-
 
 #### Summary of conditions ####
 # "IN_LEDOR" ==> c("IN_BAIXA_VISAO", "IN_CEGUEIRA", "IN_DEFICIENCIA_MENTAL", "IN_SURDO_CEGUEIRA", "IN_AUTISMO", "IN_DEFICIT_ATENCAO", "IN_DISLEXIA")
